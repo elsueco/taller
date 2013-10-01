@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.sivalabs.mybatisdemo.mappers.UserMapper'>
+
+
+<!--reusables  -->
+	<sql id="columnDesign">
+	D.design_id ,D.name,D.description,M.model_id,M.name,M.description
+	</sql>
+	<sql id="tableDesign">
+	design D, model M
+	</sql>
+	
+	
+	<select id='getDesign' resultType='Design'>
+		SELECT
+		<include refid="columnDesign"/>
+		FROM 
+		<include refid="tablesDesign"/>
+		WHERE 
+		d.design_id = #{design_id}
+	</select>
+	<select id='getDesignforModel' resultType='Design'>
+		SELECT
+		<include refid="columnDesign"/>
+		FROM 
+		<include refid="tablesDesign"/>
+		WHERE 
+		d.model = #{model_id} and d.model=m.model_id
+	</select>
+	
+	
+	
+	
+
+
+	<resultMap type='Design' id='rmDesign'>
+		<id property='id' column='design_id' />
+		<result property='name' column='email_id' />
+		<result property='description' column='password' />
+		<association property="model" resultMap="rmModel">
+		</association>
+	</resultMap>
+	<resultMap type="Model" id="rmModel">
+		<id property="id" column="model" />
+		<result property="name" column="name" />
+		<result property="description" column="descripction" />
+	</resultMap>
+	<select id='getAllDesign' resultMap='rmDesign'>
+		SELECT
+		<include refid="columnDesign"/>
+		FROM 
+		<include refid="tablesDesign"/>
+		WHERE 
+		 D.MODEL=M.MODEL_ID
+	</select>
+	<select id="getDetailDesign" resultMap='rmDesign'>
+		SELECT
+		<include refid="columnDesign"/>
+		FROM
+		<include refid="tableDesign"/>
+		WHERE D.MODEL=M.MODEL_ID 
+	</select>
+
+	<insert id='insertDesign' useGeneratedKeys='true' keyProperty='userId'>
+		INSERT INTO DESIGN(name, description, model)
+		VALUES(#{name}, #{description}, #{model})
+	</insert>
+
+
+	<delete id='deleteDesign'>
+		DELETE FROM DESIGN WHERE DESIGN_ID = #{id}
+	</delete>
+
+</mapper>
