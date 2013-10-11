@@ -26,25 +26,24 @@
 		P.SUCURSAL=S.SUCURSAL_ID
 
 	</sql>
+	
+	
 	<resultMap type="Product" id="rmProduct">
-		<id property='id' column='product_id' />
-		<result property='color' column='color' />
-		<result property='stock' column='stock' />
-		<association property="design" javaType="Design">
-			<id property='id' column='design_id' />
-			<result property='name' column='design_id' />
-			<association property="model" javaType="Model">
-				<id property="id" column="name" />
-				<result property="name" column="mname" />
-				<result property="description" column="mdescription" />
-			</association>
-			<association property="Sucursal" javaType="Sucursal">
-				<id property="id" column="sucursal_id" />
-				<result property="name" column="sname" />
-				<result property="description" column="sdescription" />
-			</association>
+		<id property='id_product' column='id_product' />
+		<result property='descrition_product' column='description_product' />
+		<result property="name_product" column="name_product"/>
+		
+		<association property="model" javaType="Model">
+			<id property='id_model' column='id_model' />
+			<result property='name_model' column='name_model' />
+			<result property="description_model" column="descrition_model"/>
+			
 		</association>
 	</resultMap>
+	
+	
+	
+	
 	<select id='getAllProducts' resultMap='rmProduct'>
 		SELECT
 		<include refid="columnProduct" />

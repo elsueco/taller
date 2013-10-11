@@ -37,17 +37,12 @@
 
 
 	<resultMap type='Design' id='rmDesign'>
-		<id property='id' column='design_id' />
-		<result property='name' column='email_id' />
-		<result property='description' column='password' />
-		<association property="model" resultMap="rmModel">
-		</association>
+		<id property='id' column='id_design' />
+		<result property='name_design' column='name_design' />
+		<result property='description_design' column='description_design' />
 	</resultMap>
-	<resultMap type="Model" id="rmModel">
-		<id property="id" column="model" />
-		<result property="name" column="name" />
-		<result property="description" column="descripction" />
-	</resultMap>
+	
+	
 	<select id='getAllDesign' resultMap='rmDesign'>
 		SELECT
 		<include refid="columnDesign"/>

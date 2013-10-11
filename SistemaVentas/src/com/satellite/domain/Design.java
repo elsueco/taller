@@ -7,7 +7,7 @@ public class Design {
 
 	
 	Integer id;
-	String name;
+	String name_design;
 	String descripcion;
 	Model model;
 	public Integer getId() {
@@ -17,10 +17,10 @@ public class Design {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		return name_design;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name_design = name;
 	}
 	public String getDescripcion() {
 		return descripcion;
